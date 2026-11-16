@@ -1,0 +1,31 @@
+name: Funk-Mitschnitt teilen
+description: Mitschnitt eines Vaillant-Funkthermostats für die Protokollanalyse
+labels: ["mitschnitt"]
+body:
+  - type: input
+    id: modell
+    attributes:
+      label: Thermostat-Modell
+      placeholder: z. B. VRT 240f, Typenschild-Nr. 306773
+    validations:
+      required: true
+  - type: input
+    id: frequenz
+    attributes:
+      label: Empfangsfrequenz und Bandbreite
+      placeholder: z. B. 868.300 MHz, 270 kHz
+  - type: textarea
+    id: aktion
+    attributes:
+      label: Aktion am Thermostat
+      description: Was wurde gedrückt oder gedreht? Welche Raum- und Solltemperatur?
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Serial-Ausgabe
+      description: RAW- und HEX-Zeilen aus dem Sniffer bzw. aus tools/capture.py
+      render: text
+    validations:
+      required: true

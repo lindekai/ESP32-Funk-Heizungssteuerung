@@ -1,0 +1,20 @@
+name: Fehler melden
+description: Etwas funktioniert nicht wie beschrieben
+labels: ["bug"]
+body:
+  - type: textarea
+    id: was
+    attributes:
+      label: Was ist passiert, was hast du erwartet?
+    validations:
+      required: true
+  - type: input
+    id: hardware
+    attributes:
+      label: Hardware
+      placeholder: ESP32-Board, CC1101-Modul, Display, Sensor
+  - type: textarea
+    id: log
+    attributes:
+      label: Serial-Ausgabe
+      render: text

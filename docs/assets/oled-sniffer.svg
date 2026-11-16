@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="428" height="236" viewBox="0 0 428 236" role="img" aria-label="OLED-Anzeige des Sniffers">
+<rect width="428" height="236" rx="16" fill="#1E3A5F"/>
+<rect x="16" y="16" width="396" height="204" rx="6" fill="#05080B"/>
+<style>text{font-family:ui-monospace,Menlo,Consolas,monospace;fill:#8FE3FF;font-size:25.2px;}</style>
+<text x="22" y="46" textLength="288" lengthAdjust="spacingAndGlyphs">VRT 240f Sniffer</text>
+<text x="22" y="79" textLength="288" lengthAdjust="spacingAndGlyphs">868.300 MHz  OOK</text>
+<text x="22" y="112" textLength="162" lengthAdjust="spacingAndGlyphs">RSSI  -62</text>
+<text x="22" y="145" textLength="342" lengthAdjust="spacingAndGlyphs">#3 132P 826us -61dB</text>
+<text x="22" y="178" textLength="360" lengthAdjust="spacingAndGlyphs">7E B6 6F 00 04 00 00</text>
+<text x="22" y="211" textLength="360" lengthAdjust="spacingAndGlyphs">11 2D 00 BF 82 FF 00</text>
+<rect x="208" y="94" width="198" height="24" fill="none" stroke="#8FE3FF" stroke-width="3"/>
+<rect x="212.5" y="98.5" width="114" height="15" fill="#8FE3FF"/>
+</svg>

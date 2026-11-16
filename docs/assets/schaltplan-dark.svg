@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-label="Schaltplan ESP32, CC1101, OLED, Temperatursensor">
+<style>
+  text { font-family: ui-sans-serif,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif; fill:#EEF2F6; }
+  .t { font-size:17px; font-weight:700; }
+  .p { font-size:13px; font-family: ui-monospace,Menlo,monospace; }
+  .m { font-size:12px; fill:#9AA7B4; }
+  .box { fill:#1C2733; stroke:#C9D3DD; stroke-width:2; }
+  .w { fill:none; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+</style>
+<rect width="1000" height="560" rx="18" fill="#0E141B"/>
+<rect x="380" y="60" width="240" height="440" rx="14" fill="#2E8A6E" stroke="#C9D3DD" stroke-width="2"/>
+<text x="500" y="92" text-anchor="middle" class="t" style="fill:#fff">ESP32-DevKit</text>
+<text x="500" y="112" text-anchor="middle" class="m" style="fill:#d7efe6">WROOM-32 · 38 Pins</text>
+<rect class="box" x="760" y="110" width="190" height="350" rx="10"/>
+<text x="855" y="140" text-anchor="middle" class="t">CC1101</text><text x="855" y="158" text-anchor="middle" class="m">868 MHz · nur 3,3 V!</text>
+<path class="w" stroke="#FF7A50" d="M620 190 H760"/>
+<circle cx="620" cy="190" r="4" fill="#FF7A50"/><circle cx="760" cy="190" r="4" fill="#FF7A50"/>
+<text x="608" y="194" text-anchor="end" class="p" style="fill:#fff">3V3</text>
+<text x="772" y="194" class="p">VCC</text>
+<path class="w" stroke="#AAB6C2" d="M620 224 H760"/>
+<circle cx="620" cy="224" r="4" fill="#AAB6C2"/><circle cx="760" cy="224" r="4" fill="#AAB6C2"/>
+<text x="608" y="228" text-anchor="end" class="p" style="fill:#fff">GND</text>
+<text x="772" y="228" class="p">GND</text>
+<path class="w" stroke="#6EA2FF" d="M620 258 H760"/>
+<circle cx="620" cy="258" r="4" fill="#6EA2FF"/><circle cx="760" cy="258" r="4" fill="#6EA2FF"/>
+<text x="608" y="262" text-anchor="end" class="p" style="fill:#fff">G18</text>
+<text x="772" y="262" class="p">SCK</text>
+<path class="w" stroke="#6EA2FF" d="M620 292 H760"/>
+<circle cx="620" cy="292" r="4" fill="#6EA2FF"/><circle cx="760" cy="292" r="4" fill="#6EA2FF"/>
+<text x="608" y="296" text-anchor="end" class="p" style="fill:#fff">G19</text>
+<text x="772" y="296" class="p">MISO</text>
+<path class="w" stroke="#6EA2FF" d="M620 326 H760"/>
+<circle cx="620" cy="326" r="4" fill="#6EA2FF"/><circle cx="760" cy="326" r="4" fill="#6EA2FF"/>
+<text x="608" y="330" text-anchor="end" class="p" style="fill:#fff">G23</text>
+<text x="772" y="330" class="p">MOSI</text>
+<path class="w" stroke="#6EA2FF" d="M620 360 H760"/>
+<circle cx="620" cy="360" r="4" fill="#6EA2FF"/><circle cx="760" cy="360" r="4" fill="#6EA2FF"/>
+<text x="608" y="364" text-anchor="end" class="p" style="fill:#fff">G5</text>
+<text x="772" y="364" class="p">CSN</text>
+<path class="w" stroke="#B98CFF" d="M620 394 H760"/>
+<circle cx="620" cy="394" r="4" fill="#B98CFF"/><circle cx="760" cy="394" r="4" fill="#B98CFF"/>
+<text x="608" y="398" text-anchor="end" class="p" style="fill:#fff">G26</text>
+<text x="772" y="398" class="p">GDO0</text>
+<path class="w" stroke="#B98CFF" d="M620 428 H760" stroke-dasharray="6 6"/>
+<circle cx="620" cy="428" r="4" fill="#B98CFF"/><circle cx="760" cy="428" r="4" fill="#B98CFF"/>
+<text x="608" y="432" text-anchor="end" class="p" style="fill:#fff">G17</text>
+<text x="772" y="432" class="p">GDO2</text>
+<text x="855" y="454" text-anchor="middle" class="m">GDO2 optional</text>
+<text x="392" y="234" class="p" style="fill:#fff">3V3</text>
+<text x="392" y="274" class="p" style="fill:#fff">GND</text>
+<text x="392" y="314" class="p" style="fill:#fff">G22</text>
+<text x="392" y="354" class="p" style="fill:#fff">G21</text>
+<rect class="box" x="50" y="70" width="190" height="170" rx="10"/>
+<text x="64" y="98" class="t">OLED 0,96″</text><text x="64" y="116" class="m">SSD1306 · I²C 0x3C</text>
+<text x="226" y="150" text-anchor="end" class="p">VCC</text>
+<path class="w" stroke="#FF7A50" d="M240 146 H280"/><circle cx="280" cy="146" r="4" fill="#FF7A50"/>
+<text x="226" y="174" text-anchor="end" class="p">GND</text>
+<path class="w" stroke="#AAB6C2" d="M240 170 H300"/><circle cx="300" cy="170" r="4" fill="#AAB6C2"/>
+<text x="226" y="198" text-anchor="end" class="p">SCL</text>
+<path class="w" stroke="#3CC79A" d="M240 194 H320"/><circle cx="320" cy="194" r="4" fill="#3CC79A"/>
+<text x="226" y="222" text-anchor="end" class="p">SDA</text>
+<path class="w" stroke="#3CC79A" d="M240 218 H340"/><circle cx="340" cy="218" r="4" fill="#3CC79A"/>
+<rect class="box" x="50" y="320" width="190" height="170" rx="10"/>
+<text x="64" y="348" class="t">Temperatursensor</text><text x="64" y="366" class="m">SHT31 / BME280 · I²C</text>
+<text x="226" y="400" text-anchor="end" class="p">VCC</text>
+<path class="w" stroke="#FF7A50" d="M240 396 H280"/><circle cx="280" cy="396" r="4" fill="#FF7A50"/>
+<text x="226" y="424" text-anchor="end" class="p">GND</text>
+<path class="w" stroke="#AAB6C2" d="M240 420 H300"/><circle cx="300" cy="420" r="4" fill="#AAB6C2"/>
+<text x="226" y="448" text-anchor="end" class="p">SCL</text>
+<path class="w" stroke="#3CC79A" d="M240 444 H320"/><circle cx="320" cy="444" r="4" fill="#3CC79A"/>
+<text x="226" y="472" text-anchor="end" class="p">SDA</text>
+<path class="w" stroke="#3CC79A" d="M240 468 H340"/><circle cx="340" cy="468" r="4" fill="#3CC79A"/>
+<path class="w" stroke="#FF7A50" d="M280 146 V396"/>
+<path class="w" stroke="#FF7A50" d="M280 230 H380"/><circle cx="280" cy="230" r="4" fill="#FF7A50"/><circle cx="380" cy="230" r="4" fill="#FF7A50"/>
+<path class="w" stroke="#AAB6C2" d="M300 170 V420"/>
+<path class="w" stroke="#AAB6C2" d="M300 270 H380"/><circle cx="300" cy="270" r="4" fill="#AAB6C2"/><circle cx="380" cy="270" r="4" fill="#AAB6C2"/>
+<path class="w" stroke="#3CC79A" d="M320 194 V444"/>
+<path class="w" stroke="#3CC79A" d="M320 310 H380"/><circle cx="320" cy="310" r="4" fill="#3CC79A"/><circle cx="380" cy="310" r="4" fill="#3CC79A"/>
+<path class="w" stroke="#3CC79A" d="M340 218 V468"/>
+<path class="w" stroke="#3CC79A" d="M340 350 H380"/><circle cx="340" cy="350" r="4" fill="#3CC79A"/><circle cx="380" cy="350" r="4" fill="#3CC79A"/>
+<path class="w" stroke="#FF7A50" d="M50 530 h26"/><text x="84" y="534" class="m">3,3 V</text>
+<path class="w" stroke="#AAB6C2" d="M180 530 h26"/><text x="214" y="534" class="m">GND</text>
+<path class="w" stroke="#3CC79A" d="M310 530 h26"/><text x="344" y="534" class="m">I²C</text>
+<path class="w" stroke="#6EA2FF" d="M440 530 h26"/><text x="474" y="534" class="m">SPI</text>
+<path class="w" stroke="#B98CFF" d="M570 530 h26"/><text x="604" y="534" class="m">GDO (Daten)</text>
+<text x="950" y="534" text-anchor="end" class="m">logischer Plan – nicht die physische Pinlage</text>
+</svg>
