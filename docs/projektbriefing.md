@@ -28,22 +28,22 @@ Ein eigenes, smartes Funkgerät auf Basis eines ESP32, das mit dem vorhandenen F
 | --- | --- | --- |
 | CC1101 | VCC | 3V3 |
 | CC1101 | GND | GND |
-| CC1101 | SCK | G18 |
-| CC1101 | MISO (SO) | G19 |
-| CC1101 | MOSI (SI) | G23 |
-| CC1101 | CSN | G5 |
-| CC1101 | GDO0 | G26 |
-| CC1101 | GDO2 (optional) | G17 |
+| CC1101 | GDO0 | G13 |
+| CC1101 | CSN | G14 |
+| CC1101 | SCK | G27 |
+| CC1101 | MOSI (SI) | G26 |
+| CC1101 | MISO (SO) | G25 |
+| CC1101 | GDO2 (optional) | G35 |
 | OLED 0,96" | VCC | 3V3 |
 | OLED 0,96" | GND | GND |
-| OLED 0,96" | SDA | G21 |
-| OLED 0,96" | SCL | G22 |
+| OLED 0,96" | SCL | G32 |
+| OLED 0,96" | SDA | G33 |
 | Temperatursensor | VCC | 3V3 |
 | Temperatursensor | GND | GND |
-| Temperatursensor | SDA | G21 |
-| Temperatursensor | SCL | G22 |
+| Temperatursensor | SCL | G32 |
+| Temperatursensor | SDA | G33 |
 
-Breadboard-Tipp: Das DevKit ist so breit, dass auf einem normalen Breadboard nur eine Lochreihe frei bleibt. Am besten zwei Breadboards nebeneinander nutzen oder das Board mittig über die Lücke zweier Boards setzen. 3V3 und GND auf die Versorgungsschienen legen, alle drei Module von dort versorgen. Den CC1101 niemals an 5 V anschließen.
+Breadboard: Ein Breadboard reicht. Das DevKit ist so breit, dass nur auf einer Seite eine Lochreihe frei bleibt – deshalb liegen alle benötigten Signale auf der 3V3-Stiftleiste (SPI und I²C sind beim ESP32 frei auf GPIOs legbar). 3V3 und GND auf die Versorgungsschienen legen, alle drei Module von dort versorgen. Den CC1101 niemals an 5 V anschließen.
 
 &#91;embedded content: Schalt- und Breadboard-Plan · ESP32, CC1101, OLED, Sensor\]
 
@@ -51,7 +51,7 @@ Auf dem Breadboard: ESP32 mittig über zwei Boards, 3V3 und GND auf die Schienen
 
 ## Software-Architektur
 
-- Framework: Arduino bzw. PlatformIO
+- Framework: Arduino IDE
 - CC1101: SmartRC-CC1101-Driver-Lib oder RadioLib
 - Display: U8g2 (128x64-SSD1306)
 - Smart-Home-Anbindung ohne MQTT, eine der beiden Varianten (Entscheidung offen):
@@ -85,7 +85,7 @@ Auf dem Breadboard: ESP32 mittig über zwei Boards, 3V3 und GND auf die Schienen
 Das Repo wird öffentlich und soll sich optisch von üblichen Bastel-Repos abheben.
 
 - Hero-Banner oben im README (SVG, hell und dunkel per `<picture>`), mit Projektname, Kurzclaim und stilisierter Zeichnung von Thermostat, ESP32 und Funkwellen
-- Badges: Plattform ESP32, Framework PlatformIO/Arduino, Lizenz, HomeKit
+- Badges: Plattform ESP32, Arduino IDE, Lizenz, HomeKit
 - Kurzer Pitch in zwei Sätzen, danach Foto oder Rendering des fertigen Geräts im Gehäuse
 - Feature-Liste, Hardware-Tabelle mit Bezugsquellen, Verdrahtungsplan als SVG
 - Schnellstart: Flashen, WLAN einrichten, in Apple Home koppeln

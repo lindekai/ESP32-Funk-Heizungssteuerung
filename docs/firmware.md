@@ -1,6 +1,6 @@
 # Firmware
 
-PlatformIO-Projekt in [`firmware/`](../firmware/). Aktuell: **Phase 1 – Sniffer**.
+Arduino-Sketch in [`firmware/vrt240f_sniffer/`](../firmware/vrt240f_sniffer/). Aktuell: **Phase 1 – Sniffer**.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/architektur-dark.svg">
@@ -11,11 +11,14 @@ PlatformIO-Projekt in [`firmware/`](../firmware/). Aktuell: **Phase 1 – Sniffe
 
 ```
 firmware/
-├── platformio.ini              Umgebungen: sniffer (ESP32), native (Tests)
-├── include/config.h            Pins, Startfrequenz, Pulsfilter
-├── src/main.cpp                Funk, ISR, Rahmenbildung, OLED, Serial-Befehle
-├── lib/vaillant_decoder/       plattformunabhängiger Decoder
-└── test/test_decoder/          Unity-Tests für den Decoder
+├── vrt240f_sniffer/
+│   ├── vrt240f_sniffer.ino     Funk, ISR, Rahmenbildung, OLED, Serial-Befehle
+│   ├── config.h                Pins, Startfrequenz, Pulsfilter
+│   ├── vaillant_decoder.h      plattformunabhängiger Decoder
+│   └── vaillant_decoder.cpp
+└── test/
+    ├── test_decoder.cpp        Tests für den Decoder
+    └── Makefile                make -C firmware/test
 ```
 
 ### Empfang
@@ -28,11 +31,11 @@ Eine Interrupt-Routine misst bei jeder Flanke die Dauer des vorherigen Pegels un
 - Nach **8 ms** ohne Flanke wird ein Rahmen ebenfalls abgeschlossen.
 - Rahmen mit **weniger als 40 Pulsen** werden verworfen.
 
-Alle Grenzen stehen in [`config.h`](../firmware/include/config.h).
+Alle Grenzen stehen in [`config.h`](../firmware/vrt240f_sniffer/config.h).
 
 ### Dekodierung
 
-[`vaillant_decoder`](../firmware/lib/vaillant_decoder/src/vaillant_decoder.h) arbeitet in Stufen, die einzeln aufrufbar sind:
+[`vaillant_decoder`](../firmware/vrt240f_sniffer/vaillant_decoder.h) arbeitet in Stufen, die einzeln aufrufbar sind:
 
 | Stufe | Funktion | Was passiert |
 | --- | --- | --- |
@@ -63,6 +66,8 @@ Zeile 1–2: Modus und Frequenz · Zeile 3: Live-RSSI mit Balken (−110 … −
 
 ## Serial-Befehle
 
+Im seriellen Monitor der Arduino IDE (115200 Baud, Zeilenende „Neue Zeile“) oben in die Eingabezeile tippen:
+
 | Befehl | Wirkung |
 | --- | --- |
 | `f <MHz>` | Empfangsfrequenz, z. B. `f 868.28` |
@@ -72,16 +77,26 @@ Zeile 1–2: Modus und Frequenz · Zeile 3: Live-RSSI mit Balken (−110 … −
 | `status` | aktuelle Einstellungen, Rahmenzähler, Pufferüberläufe |
 | `help` | Befehlsübersicht |
 
-## Bauen und testen
+## Arduino IDE einrichten
+
+| Einstellung | Wert |
+| --- | --- |
+| Boardpaket | **esp32** von Espressif Systems (getestet mit 3.3.12) |
+| Board | **ESP32 Dev Module** |
+| Bibliotheken | **SmartRC-CC1101-Driver-Lib** (getestet 3.0.2), **U8g2** (getestet 2.36.19) |
+| Serieller Monitor | 115200 Baud |
+
+Der Sketch kompiliert mit „Compiler-Warnungen: Alle“ ohne Warnungen im eigenen Code.
+
+## Tests
+
+Der Decoder hat keine Abhängigkeit zu Arduino und lässt sich deshalb auf dem Rechner testen. Nötig ist nur ein C++-Compiler (auf dem Mac: `xcode-select --install`):
 
 ```bash
-cd firmware
-pio run                 # ESP32-Firmware bauen
-pio run -t upload       # flashen
-pio test -e native      # Decoder-Tests auf dem Rechner
+make -C firmware/test
 ```
 
-Die Tests erzeugen mit einem kleinen Encoder Pulsfolgen (inklusive ±120 µs Jitter und verschobener Bitphase) und prüfen, dass der Decoder die Bytes zurückgewinnt. Die GitHub-Action führt Build und Tests bei jedem Push aus.
+Die Tests erzeugen mit einem kleinen Encoder Pulsfolgen (inklusive ±120 µs Jitter und verschobener Bitphase) und prüfen, dass der Decoder die Bytes zurückgewinnt. Die GitHub-Action führt bei jedem Push die Tests aus und kompiliert den Sketch mit der Arduino CLI.
 
 ## Bibliotheken
 
@@ -89,4 +104,3 @@ Die Tests erzeugen mit einem kleinen Encoder Pulsfolgen (inklusive ±120 µs Jit
 | --- | --- |
 | [SmartRC-CC1101-Driver-Lib](https://github.com/LSatan/SmartRC-CC1101-Driver-Lib) | CC1101 ansteuern |
 | [U8g2](https://github.com/olikraus/u8g2) | OLED |
-| [Unity](https://github.com/ThrowTheSwitch/Unity) | Unit-Tests (über PlatformIO) |

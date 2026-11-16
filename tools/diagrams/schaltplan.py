@@ -32,8 +32,8 @@ def render(c):
     a('<text x="500" y="112" text-anchor="middle" class="m" style="fill:#d7efe6">WROOM-32 · 38 Pins</text>')
 
     # CC1101 rechts
-    cc = [("VCC", "3V3"), ("GND", "GND"), ("SCK", "G18"), ("MISO", "G19"), ("MOSI", "G23"),
-          ("CSN", "G5"), ("GDO0", "G26"), ("GDO2", "G17")]
+    cc = [("VCC", "3V3"), ("GND", "GND"), ("GDO0", "G13"), ("CSN", "G14"), ("SCK", "G27"),
+          ("MOSI", "G26"), ("MISO", "G25"), ("GDO2", "G35")]
     a('<rect class="box" x="760" y="110" width="190" height="350" rx="10"/>')
     a('<text x="855" y="140" text-anchor="middle" class="t">CC1101</text>'
       '<text x="855" y="158" text-anchor="middle" class="m">868 MHz · nur 3,3 V!</text>')
@@ -49,7 +49,7 @@ def render(c):
 
     # I²C-Module links über gemeinsame Busleitungen
     esp_y = {"VCC": 230, "GND": 270, "SCL": 310, "SDA": 350}
-    for lab, sig in (("3V3", "VCC"), ("GND", "GND"), ("G22", "SCL"), ("G21", "SDA")):
+    for lab, sig in (("3V3", "VCC"), ("GND", "GND"), ("G32", "SCL"), ("G33", "SDA")):
         a(f'<text x="392" y="{esp_y[sig] + 4}" class="p" style="fill:#fff">{lab}</text>')
     bus_x = {"VCC": 280, "GND": 300, "SCL": 320, "SDA": 340}
     spans = {k: [v, v] for k, v in esp_y.items()}
@@ -75,7 +75,7 @@ def render(c):
     for key, label in (("vcc", "3,3 V"), ("gnd", "GND"), ("i2c", "I²C"), ("spi", "SPI"), ("gdo", "GDO (Daten)")):
         a(f'<path class="w" stroke="{c[key]}" d="M{x} 530 h26"/><text x="{x + 34}" y="534" class="m">{label}</text>')
         x += 130
-    a('<text x="950" y="534" text-anchor="end" class="m">logischer Plan – nicht die physische Pinlage</text>')
+    a('<text x="950" y="534" text-anchor="end" class="m">logischer Plan · alle Pins auf der 3V3-Stiftleiste</text>')
     a("</svg>")
     return "\n".join(o)
 

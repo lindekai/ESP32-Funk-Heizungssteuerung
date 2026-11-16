@@ -4,6 +4,10 @@
 // an GDO0 aus. Ein Interrupt misst jede Pegeldauer; zusammenhängende Pulse
 // werden zu Rahmen gruppiert, roh ausgegeben und testweise mit dem
 // 340f-Schema (BMC + HDLC) dekodiert.
+//
+// Arduino IDE: Board "ESP32 Dev Module" (Boardpaket esp32 von Espressif),
+// Bibliotheken "SmartRC-CC1101-Driver-Lib" und "U8g2" über den
+// Bibliotheksverwalter installieren. Serieller Monitor: 115200 Baud.
 
 #include <Arduino.h>
 #include <ELECHOUSE_CC1101_SRC_DRV.h>
@@ -18,8 +22,6 @@ using vaillant::Pulse;
 
 // ---------------------------------------------------------------------------
 // Pulserfassung (ISR -> Ringpuffer)
-
-namespace {
 
 constexpr size_t kRingSize = 4096;  // Zweierpotenz
 Pulse ring[kRingSize];
@@ -38,7 +40,7 @@ void IRAM_ATTR onGdo0Edge() {
 
   const size_t next = (ringHead + 1) & (kRingSize - 1);
   if (next == ringTail) {
-    ++ringOverflows;
+    ringOverflows = ringOverflows + 1;
     return;
   }
   ring[ringHead] = {duration, endedLevel};
@@ -242,7 +244,6 @@ void pollSerial() {
   }
 }
 
-}  // namespace
 
 // ---------------------------------------------------------------------------
 
@@ -257,6 +258,7 @@ void setup() {
   ELECHOUSE_cc1101.setSpiPin(PIN_CC1101_SCK, PIN_CC1101_MISO, PIN_CC1101_MOSI,
                              PIN_CC1101_CSN);
   ELECHOUSE_cc1101.setGDO0(PIN_CC1101_GDO0);
+  ELECHOUSE_cc1101.Init();
   if (!ELECHOUSE_cc1101.getCC1101()) {
     Serial.println("FEHLER: CC1101 antwortet nicht – Verdrahtung prüfen.");
     display.clearBuffer();
@@ -265,7 +267,6 @@ void setup() {
     display.sendBuffer();
     while (true) delay(1000);
   }
-  ELECHOUSE_cc1101.Init();
   configureRadio();
 
   pinMode(PIN_CC1101_GDO0, INPUT);

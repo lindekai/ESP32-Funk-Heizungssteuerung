@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Erzeugt docs/assets/oled-sniffer.svg: Vorschau der OLED-Anzeige (128×64, 3-fach).
 
-Layout entspricht drawDisplay() in firmware/src/main.cpp.
+Layout entspricht drawDisplay() in firmware/vrt240f_sniffer/vrt240f_sniffer.ino.
 """
 
 from theme import write

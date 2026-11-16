@@ -10,13 +10,12 @@ Danke für dein Interesse! Besonders hilfreich sind:
 ## Entwicklung
 
 ```bash
-cd firmware
-pio test -e native   # Decoder-Tests müssen grün sein
-pio run              # Firmware muss bauen
+make -C firmware/test   # Decoder-Tests müssen grün sein (nur ein C++-Compiler nötig)
 ```
 
 - Code im Stil der umgebenden Dateien, Kommentare auf Deutsch
-- Plattformunabhängige Logik (Dekodierung, Regelung) gehört in `firmware/lib/` und bekommt native Tests
+- Der Sketch muss in der Arduino IDE ohne Warnungen kompilieren (Board „ESP32 Dev Module“)
+- Plattformunabhängige Logik (Dekodierung, Regelung) gehört in eigene `.cpp`/`.h`-Dateien neben dem Sketch und bekommt Tests in `firmware/test/`
 - Ein Pull Request pro Thema, kurze Beschreibung, was und warum
 
 ## Sicherheit

@@ -6,7 +6,7 @@
 <p align="center">
   <a href="https://github.com/lindekai/ESP32-Funk-Heizungssteuerung/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/lindekai/ESP32-Funk-Heizungssteuerung/ci.yml?branch=main&style=flat-square&label=CI"></a>
   <img alt="Plattform ESP32" src="https://img.shields.io/badge/Plattform-ESP32-1F5E4B?style=flat-square&logo=espressif&logoColor=white">
-  <img alt="Framework PlatformIO / Arduino" src="https://img.shields.io/badge/Framework-PlatformIO%20%2F%20Arduino-F5822A?style=flat-square&logo=platformio&logoColor=white">
+  <img alt="Arduino IDE" src="https://img.shields.io/badge/Arduino%20IDE-2.x-00878F?style=flat-square&logo=arduino&logoColor=white">
   <img alt="Funk 868 MHz" src="https://img.shields.io/badge/Funk-868%20MHz%20OOK-2F6FDE?style=flat-square">
   <img alt="HomeKit geplant" src="https://img.shields.io/badge/HomeKit-geplant-000000?style=flat-square&logo=apple&logoColor=white">
   <a href="LICENSE"><img alt="Lizenz MIT" src="https://img.shields.io/badge/Lizenz-MIT-5B6672?style=flat-square"></a>
@@ -55,7 +55,7 @@ Eine Vaillant-Therme von 1994 mit nachgerüstetem Funkthermostat VRT 240f bekomm
 | OLED 0,96″ | 128×64, SSD1306, I²C (0x3C) | z. B. AZ-Delivery, Berrybase |
 | Temperatursensor | SHT31 oder BME280, I²C (noch offen) | z. B. Adafruit, Berrybase |
 | Netzteil | USB, 5 V / ≥ 1 A | – |
-| Aufbau | 2 Breadboards, Dupont-Kabel | – |
+| Aufbau | 1 Breadboard (830 Punkte), Dupont-Kabel | – |
 
 > [!WARNING]
 > Der CC1101 verträgt nur **3,3 V**. Niemals an 5 V anschließen.
@@ -79,10 +79,10 @@ Eine Vaillant-Therme von 1994 mit nachgerüstetem Funkthermostat VRT 240f bekomm
 | Bauteil | Pin | ESP32 |
 | --- | --- | --- |
 | CC1101 | VCC / GND | 3V3 / GND |
-| CC1101 | SCK / MISO / MOSI / CSN | G18 / G19 / G23 / G5 |
-| CC1101 | GDO0 / GDO2 (optional) | G26 / G17 |
+| CC1101 | GDO0 / CSN / SCK | G13 / G14 / G27 |
+| CC1101 | MOSI / MISO / GDO2 (optional) | G26 / G25 / G35 |
 | OLED + Sensor | VCC / GND | 3V3 / GND |
-| OLED + Sensor | SDA / SCL | G21 / G22 |
+| OLED + Sensor | SCL / SDA | G32 / G33 |
 
 </details>
 
@@ -90,16 +90,16 @@ Schritt-für-Schritt-Anleitung, Stückliste und Fehlersuche: **[docs/aufbau.md](
 
 ## Schnellstart
 
-Voraussetzung: [PlatformIO](https://platformio.org/) (CLI oder VS-Code-Erweiterung).
+Voraussetzung: [Arduino IDE 2](https://www.arduino.cc/en/software).
 
-```bash
-git clone https://github.com/lindekai/ESP32-Funk-Heizungssteuerung.git
-cd ESP32-Funk-Heizungssteuerung/firmware
+1. **ESP32-Boardpaket:** *Werkzeuge → Board → Boardverwalter*, nach „esp32“ suchen und **esp32 von Espressif Systems** installieren.
+2. **Bibliotheken:** *Werkzeuge → Bibliotheken verwalten*, **SmartRC-CC1101-Driver-Lib** und **U8g2** installieren.
+3. **Sketch öffnen:** [`firmware/vrt240f_sniffer/vrt240f_sniffer.ino`](firmware/vrt240f_sniffer/vrt240f_sniffer.ino)
+4. **Board wählen:** *Werkzeuge → Board → esp32 → ESP32 Dev Module*, dazu den passenden Port.
+5. **Hochladen** (→) und den **seriellen Monitor** mit **115200 Baud** öffnen.
 
-pio run -t upload        # Sniffer flashen
-pio device monitor       # Serial Monitor, 115200 Baud
-pio test -e native       # Decoder-Tests auf dem Rechner
-```
+> [!TIP]
+> Bricht der Upload mit „Failed to connect“ ab: beim Erscheinen von „Connecting…“ die **BOOT**-Taste am DevKit kurz gedrückt halten.
 
 Dann am VRT 240f die Solltemperatur deutlich über bzw. unter die Raumtemperatur drehen, damit er sendet. Im Serial Monitor erscheint pro Funkrahmen:
 
@@ -109,7 +109,7 @@ RAW: +1650 -825 +825 -1650 +1650 -1650 ...
 HEX (Phase 0): 7E B6 6F 00 04 00 00 11 2D 00 BF 82 FF 00
 ```
 
-Befehle wie `f 868.28` (Frequenz) oder `bw 200` (Bandbreite) stellen den Empfänger live um. Alle Befehle und die Funktionsweise: **[docs/firmware.md](docs/firmware.md)**. Mitschnitte schreibt [`tools/capture.py`](tools/capture.py) in eine Datei.
+Befehle wie `f 868.28` (Frequenz) oder `bw 200` (Bandbreite) stellen den Empfänger live um. Die Befehle tippst du oben in die Eingabezeile des seriellen Monitors. Alle Befehle und die Funktionsweise: **[docs/firmware.md](docs/firmware.md)**. Mitschnitte schreibt [`tools/capture.py`](tools/capture.py) in eine Datei.
 
 *WLAN-Einrichtung und Kopplung mit Apple Home folgen mit Phase 5.*
 
@@ -122,7 +122,7 @@ Befehle wie `f 868.28` (Frequenz) oder `bw 200` (Bandbreite) stellen den Empfän
 
 ## Roadmap
 
-- [x] Projektgerüst, Schaltplan, Breadboard-Plan, CI
+- [x] Projektgerüst, Schaltplan, Breadboard-Plan, CI (Arduino CLI)
 - [x] **Phase 1 – Sniffer:** Pulse mitschneiden, Serial + OLED
 - [ ] **Phase 2 – Protokollanalyse:** Modulation, Datenrate, Rahmenaufbau, Adresse ([Notizen](docs/protokoll.md))
 - [ ] **Phase 3 – Senden:** „Heizung an/aus“ replizieren und am Empfänger testen
@@ -139,7 +139,7 @@ Ob der 240f genauso funkt, klärt Phase 2. Der Quarz im Thermostat (13,568 MHz �
 ## Projektstruktur
 
 ```
-firmware/    PlatformIO-Projekt: Sniffer, Decoder-Bibliothek, Tests
+firmware/    Arduino-Sketch vrt240f_sniffer/ und Decoder-Tests (test/)
 enclosure/   Gehäuse: STL und Quelldateien (Phase 6)
 docs/        Aufbau, Firmware, Protokollnotizen, Projektbriefing, Grafiken
 tools/       Serial-Mitschnitt, Generatoren für alle Grafiken

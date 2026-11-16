@@ -21,35 +21,35 @@
 <circle cx="620" cy="224" r="4" fill="#AAB6C2"/><circle cx="760" cy="224" r="4" fill="#AAB6C2"/>
 <text x="608" y="228" text-anchor="end" class="p" style="fill:#fff">GND</text>
 <text x="772" y="228" class="p">GND</text>
-<path class="w" stroke="#6EA2FF" d="M620 258 H760"/>
-<circle cx="620" cy="258" r="4" fill="#6EA2FF"/><circle cx="760" cy="258" r="4" fill="#6EA2FF"/>
-<text x="608" y="262" text-anchor="end" class="p" style="fill:#fff">G18</text>
-<text x="772" y="262" class="p">SCK</text>
+<path class="w" stroke="#B98CFF" d="M620 258 H760"/>
+<circle cx="620" cy="258" r="4" fill="#B98CFF"/><circle cx="760" cy="258" r="4" fill="#B98CFF"/>
+<text x="608" y="262" text-anchor="end" class="p" style="fill:#fff">G13</text>
+<text x="772" y="262" class="p">GDO0</text>
 <path class="w" stroke="#6EA2FF" d="M620 292 H760"/>
 <circle cx="620" cy="292" r="4" fill="#6EA2FF"/><circle cx="760" cy="292" r="4" fill="#6EA2FF"/>
-<text x="608" y="296" text-anchor="end" class="p" style="fill:#fff">G19</text>
-<text x="772" y="296" class="p">MISO</text>
+<text x="608" y="296" text-anchor="end" class="p" style="fill:#fff">G14</text>
+<text x="772" y="296" class="p">CSN</text>
 <path class="w" stroke="#6EA2FF" d="M620 326 H760"/>
 <circle cx="620" cy="326" r="4" fill="#6EA2FF"/><circle cx="760" cy="326" r="4" fill="#6EA2FF"/>
-<text x="608" y="330" text-anchor="end" class="p" style="fill:#fff">G23</text>
-<text x="772" y="330" class="p">MOSI</text>
+<text x="608" y="330" text-anchor="end" class="p" style="fill:#fff">G27</text>
+<text x="772" y="330" class="p">SCK</text>
 <path class="w" stroke="#6EA2FF" d="M620 360 H760"/>
 <circle cx="620" cy="360" r="4" fill="#6EA2FF"/><circle cx="760" cy="360" r="4" fill="#6EA2FF"/>
-<text x="608" y="364" text-anchor="end" class="p" style="fill:#fff">G5</text>
-<text x="772" y="364" class="p">CSN</text>
-<path class="w" stroke="#B98CFF" d="M620 394 H760"/>
-<circle cx="620" cy="394" r="4" fill="#B98CFF"/><circle cx="760" cy="394" r="4" fill="#B98CFF"/>
-<text x="608" y="398" text-anchor="end" class="p" style="fill:#fff">G26</text>
-<text x="772" y="398" class="p">GDO0</text>
+<text x="608" y="364" text-anchor="end" class="p" style="fill:#fff">G26</text>
+<text x="772" y="364" class="p">MOSI</text>
+<path class="w" stroke="#6EA2FF" d="M620 394 H760"/>
+<circle cx="620" cy="394" r="4" fill="#6EA2FF"/><circle cx="760" cy="394" r="4" fill="#6EA2FF"/>
+<text x="608" y="398" text-anchor="end" class="p" style="fill:#fff">G25</text>
+<text x="772" y="398" class="p">MISO</text>
 <path class="w" stroke="#B98CFF" d="M620 428 H760" stroke-dasharray="6 6"/>
 <circle cx="620" cy="428" r="4" fill="#B98CFF"/><circle cx="760" cy="428" r="4" fill="#B98CFF"/>
-<text x="608" y="432" text-anchor="end" class="p" style="fill:#fff">G17</text>
+<text x="608" y="432" text-anchor="end" class="p" style="fill:#fff">G35</text>
 <text x="772" y="432" class="p">GDO2</text>
 <text x="855" y="454" text-anchor="middle" class="m">GDO2 optional</text>
 <text x="392" y="234" class="p" style="fill:#fff">3V3</text>
 <text x="392" y="274" class="p" style="fill:#fff">GND</text>
-<text x="392" y="314" class="p" style="fill:#fff">G22</text>
-<text x="392" y="354" class="p" style="fill:#fff">G21</text>
+<text x="392" y="314" class="p" style="fill:#fff">G32</text>
+<text x="392" y="354" class="p" style="fill:#fff">G33</text>
 <rect class="box" x="50" y="70" width="190" height="170" rx="10"/>
 <text x="64" y="98" class="t">OLED 0,96″</text><text x="64" y="116" class="m">SSD1306 · I²C 0x3C</text>
 <text x="226" y="150" text-anchor="end" class="p">VCC</text>
@@ -83,5 +83,5 @@
 <path class="w" stroke="#3CC79A" d="M310 530 h26"/><text x="344" y="534" class="m">I²C</text>
 <path class="w" stroke="#6EA2FF" d="M440 530 h26"/><text x="474" y="534" class="m">SPI</text>
 <path class="w" stroke="#B98CFF" d="M570 530 h26"/><text x="604" y="534" class="m">GDO (Daten)</text>
-<text x="950" y="534" text-anchor="end" class="m">logischer Plan – nicht die physische Pinlage</text>
+<text x="950" y="534" text-anchor="end" class="m">logischer Plan · alle Pins auf der 3V3-Stiftleiste</text>
 </svg>
